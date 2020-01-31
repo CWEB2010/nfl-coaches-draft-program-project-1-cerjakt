@@ -1,4 +1,6 @@
-﻿using System;
+﻿//Jake Cermak
+
+using System;
 
 namespace project1
 {
