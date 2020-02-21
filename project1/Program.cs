@@ -9,6 +9,7 @@ namespace project1
     {
         static void Main(string[] args)
         {
+            int count = 0;
             string[,] name = { //populating data in the player object
                                         {"Joe Burrow", "Tua Tagovailoa", "Justin Herbert", "Jordan Love", "Jake Fromm"},
                                         {"D'Andre Swift", "Jonathan Taylor", "J.K. Dobbins", "Zack Moss", "Cam Akers"},
@@ -29,7 +30,7 @@ namespace project1
                                         {"Notre Dame", "Purdue", "Washington", "Vanderbilt", "Oregon"},
                                         {"Clemson", "Oklahoma", "Wisconsin", "App. St.", "Oregon"},
                                         {"Alabama", "Georgia", "Iowa", "Wisconsin", "Louisville"},
-                                        
+
                                     };
 
             string[,] position = { //populating data in the player object
@@ -67,17 +68,36 @@ namespace project1
                              };
 
             List<Player> playerList = new List<Player>();
+            List<Player> selectedPlayers = new List<Player>();
 
             for (var i = 0; i < 8; i++)
             {
-                for (var x = 0; x < 8; x++)
+                for (var x = 0; x < 5; x++)
                 {
                     Player aPlayer = new Player(name[i, x], institution[i, x], position[i, x], salary[i, x], true, best[i, x]);
                     playerList.Add(aPlayer);
+
+
                     //Console.WriteLine("{0} goes for {1}", selection[i, x], price[i, x].ToString("c"));
                 }
             }
 
+
+
+            playerList.ForEach(x => Console.WriteLine($"{(count += 1)} {x.ToString()}"));
+
+
+
+            selectedPlayers.Add(playerList[12]);
+            playerList.RemoveAt(12);
+            //Console.WriteLine(playerList);
+           // Console.Clear();
+
+            //Console.WriteLine("Existing players to select from");
+            //playerList.ForEach(x => Console.WriteLine(x.ToString()));
+
+            //Console.WriteLine("Coaches Selected Players");
+            //selectedPlayers.ForEach(x => Console.WriteLine(x.ToString()));
 
         }
     }
@@ -100,4 +120,9 @@ class Player //Making a player class for the players
         this.Availability = Availability;
         this.Best = Best;
 	}
+    public override string ToString()
+    {
+        return String.Format($"Name: {Name} Institution: {Institution} Position: {Position} Salary: {Salary.ToString("c")}" +
+            $" Availability: {Availability}  Best: {Best} \n");
+    }
 }

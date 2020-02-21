@@ -1,0 +1,22 @@
+Main()
+
+WHILE //Restarting the program
+	//Declare two list
+	Welcome()
+	 - Welcome text
+	CreatePlayerObjects()
+        draftPrimer()
+	WHILE //Player selection Loop up to 5 (count < 5
+		GenerateAvaliablePlayers()
+        	GetUserPlayerSelection()
+                AdjustList()
+                OutputCoachSelectionData()
+                selectionPrimer()
+		count++
+		
+	ENDWHILE
+	costEffectiveDetermination()
+	outputAllCoachesSelection()
+        draftPrimer()
+ENDWHILE
+	
