@@ -10,6 +10,11 @@ namespace project1
         static void Main(string[] args)
         {
             int count = 0;
+            string sentinelValue;
+            int playerCount = 0;
+            double salaryTotal = 0;
+            int rankBank = 0;
+
             string[,] name = { //populating data in the player object
                                         {"Joe Burrow", "Tua Tagovailoa", "Justin Herbert", "Jordan Love", "Jake Fromm"},
                                         {"D'Andre Swift", "Jonathan Taylor", "J.K. Dobbins", "Zack Moss", "Cam Akers"},
@@ -70,11 +75,11 @@ namespace project1
             List<Player> playerList = new List<Player>();
             List<Player> selectedPlayers = new List<Player>();
 
-            for (var i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++) //populating the player list
             {
                 for (var x = 0; x < 5; x++)
                 {
-                    Player aPlayer = new Player(name[i, x], institution[i, x], position[i, x], salary[i, x], true, best[i, x]);
+                    Player aPlayer = new Player(count++, name[i, x], institution[i, x], position[i, x], salary[i, x], true, best[i, x]);
                     playerList.Add(aPlayer);
 
 
@@ -83,36 +88,64 @@ namespace project1
             }
 
 
+            //Beginning
+                Console.WriteLine("Welcome to the NFL drafting program");
+                Console.WriteLine("Press any key to get started or X to exit the program");
+                sentinelValue = Console.ReadLine().ToUpper();
+            
+            while (sentinelValue != "X")
+            {
+                Console.Clear(); //clears existing text if the program is restarted
+                playerList.ForEach(x => Console.WriteLine($"{x.ToString()}"));
+                Console.WriteLine("Please enter the ID of the player you want to select");
 
-            playerList.ForEach(x => Console.WriteLine($"{(count += 1)} {x.ToString()}"));
+                int selection = Convert.ToInt32(Console.ReadLine());
 
+                for (int i = 0; i < playerList.Count; i++)
+                {
+                    if (selection == playerList[i].id)
+                    {
+                        selectedPlayers.Add(playerList[i]);
+                        playerList.RemoveAt(i);
+                        //playerList[i] = bPlayer;
+                        Console.WriteLine(playerList);
+                        playerCount = playerCount + 1;
+                        //salaryTotal = salaryTotal + playerList[i].Salary;
+                        Console.WriteLine(playerList[i].Name);
 
+                    }
+                    
+                }
+                //Console.Clear();
 
-            selectedPlayers.Add(playerList[12]);
-            playerList.RemoveAt(12);
-            //Console.WriteLine(playerList);
-           // Console.Clear();
+                //if ()
+                Console.WriteLine("Existing players to select from");
+                playerList.ForEach(x => Console.WriteLine(x.ToString()));
 
-            //Console.WriteLine("Existing players to select from");
-            //playerList.ForEach(x => Console.WriteLine(x.ToString()));
+                Console.WriteLine("Coaches Selected Players");
+                selectedPlayers.ForEach(x => Console.WriteLine(x.ToString()));
 
-            //Console.WriteLine("Coaches Selected Players");
-            //selectedPlayers.ForEach(x => Console.WriteLine(x.ToString()));
+                
+                Console.WriteLine("Do you want to play again?");
+                sentinelValue = Console.ReadLine().ToUpper();
+            }
 
         }
     }
 }
 class Player //Making a player class for the players
 {
-    private string Name;
-    private string Institution;
-    private string Position;
-    private double Salary;
-    private bool Availability;
-    private string Best;
+    public int id { get; set; }
+    public string Name { get; set; }
+    public string Institution { get; set; }
+    public string Position { get; set; }
+    public double Salary { get; set; }
+    public bool Availability { get; set; }
+    public string Best { get; set; }
 	//Making a constructor
-	public Player(string Name, string Institution, string Position, double Salary, bool Availability, string Best)
+	public Player(int id, string Name, string Institution, string Position, double Salary, bool Availability, string Best)
 	{
+        this.id = id;
 		this.Name = Name;
 		this.Institution = Institution;
 		this.Position = Position;
@@ -122,7 +155,7 @@ class Player //Making a player class for the players
 	}
     public override string ToString()
     {
-        return String.Format($"Name: {Name} Institution: {Institution} Position: {Position} Salary: {Salary.ToString("c")}" +
+        return String.Format($"ID: {id}  Name: {Name} Institution: {Institution} Position: {Position} Salary: {Salary.ToString("c")}" +
             $" Availability: {Availability}  Best: {Best} \n");
     }
 }
