@@ -1,5 +1,9 @@
-﻿//Jake Cermak
-
+﻿///////////////////////////////////
+//Name: Jake Cermak
+//Course: CWEB2010
+//Date: 2/27/2020
+//Program Name: NFL Draft Selection
+///////////////////////////////////
 using System;
 using System.Collections.Generic;
 
@@ -9,11 +13,13 @@ namespace project1
     {
         static void Main(string[] args)
         {
+            //declaring variables
             int count = 0;
             string sentinelValue;
             int playerCount = 0;
             double salaryTotal = 0;
             int rankBank = 0;
+            double salaryAccum = 0;
 
             string[,] name = { //populating data in the player object
                                         {"Joe Burrow", "Tua Tagovailoa", "Justin Herbert", "Jordan Love", "Jake Fromm"},
@@ -72,8 +78,8 @@ namespace project1
                                         {"The Best", "2nd Best", "3rd Best", "4th Best", "5th Best"}
                              };
 
-            List<Player> playerList = new List<Player>();
-            List<Player> selectedPlayers = new List<Player>();
+            List<Player> playerList = new List<Player>(); //list to put the players in from the arrays
+            List<Player> selectedPlayers = new List<Player>(5); //list to put the selections in at a cap of 5
 
             for (var i = 0; i < 8; i++) //populating the player list
             {
@@ -89,47 +95,63 @@ namespace project1
 
 
             //Beginning
-                Console.WriteLine("Welcome to the NFL drafting program");
-                Console.WriteLine("Press any key to get started or X to exit the program");
-                sentinelValue = Console.ReadLine().ToUpper();
-            
-            while (sentinelValue != "X")
+            Console.WriteLine("Welcome to the NFL drafting program"); //welcome text
+            Console.WriteLine("Press any key to get started or X to exit the program"); //prompt text
+
+            sentinelValue = Console.ReadLine().ToUpper(); //establishes sentinel value
+
+            while (sentinelValue != "X" && playerCount < 5 && salaryTotal < 95000000) //takes inputs until the player count is maxed, the salary
+                                                                                      //total went over, or the sentinel value was pressed.
             {
                 Console.Clear(); //clears existing text if the program is restarted
-                playerList.ForEach(x => Console.WriteLine($"{x.ToString()}"));
-                Console.WriteLine("Please enter the ID of the player you want to select");
+                playerList.ForEach(x => Console.WriteLine($"{x.ToString()}")); //outputs list of available players
+                Console.WriteLine("Please enter the ID of the player you want to select"); //prompt text
 
-                int selection = Convert.ToInt32(Console.ReadLine());
+                int selection = Convert.ToInt32(Console.ReadLine()); //waiting for an input for an ID
 
-                for (int i = 0; i < playerList.Count; i++)
+                for (int i = 0; i < playerList.Count; i++) //iterates through the player list
                 {
-                    if (selection == playerList[i].id)
+                    if (selection == playerList[i].id) //if the selection was an available ID, output whats's below
                     {
-                        selectedPlayers.Add(playerList[i]);
-                        playerList.RemoveAt(i);
-                        //playerList[i] = bPlayer;
-                        Console.WriteLine(playerList);
-                        playerCount = playerCount + 1;
-                        //salaryTotal = salaryTotal + playerList[i].Salary;
+                        selectedPlayers.Add(playerList[i]); //adds to selected players list from position in player list
                         Console.WriteLine(playerList[i].Name);
-
+                        salaryTotal = salaryTotal + playerList[i].Salary;
+                        playerList.RemoveAt(i);
+                        playerCount = playerCount + 1;
                     }
-                    
                 }
-                //Console.Clear();
 
-                //if ()
-                Console.WriteLine("Existing players to select from");
-                playerList.ForEach(x => Console.WriteLine(x.ToString()));
+                Console.Clear();
+
+                //Console.WriteLine("Existing players to select from");
+                //playerList.ForEach(x => Console.WriteLine(x.ToString()));
 
                 Console.WriteLine("Coaches Selected Players");
                 selectedPlayers.ForEach(x => Console.WriteLine(x.ToString()));
 
-                
-                Console.WriteLine("Do you want to play again?");
+                Console.WriteLine(salaryTotal);
+
+                Console.WriteLine("Press any key to pick again or 'X' to exit the program");
                 sentinelValue = Console.ReadLine().ToUpper();
+
+            } //end of while loop
+
+            for (int i = 0; i < selectedPlayers.Count; i++) //iterates through the selected player list
+            {
+                if (selectedPlayers[i].Best == "The Best" || selectedPlayers[i].Best == "2nd Best" || selectedPlayers[i].Best == "3rd Best")
+                {
+                    salaryAccum += selectedPlayers[i].Salary;
+                    rankBank = rankBank + 1;
+                }
             }
 
+            if (rankBank >= 3 || salaryAccum < 65000000)
+            {
+                Console.WriteLine("Cost Effective");
+            }
+
+            Console.WriteLine("Coaches Selected Players");
+            selectedPlayers.ForEach(x => Console.WriteLine(x.ToString()));
         }
     }
 }
