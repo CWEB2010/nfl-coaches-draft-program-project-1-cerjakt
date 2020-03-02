@@ -126,17 +126,30 @@ namespace project1
                 //Console.WriteLine("Existing players to select from");
                 //playerList.ForEach(x => Console.WriteLine(x.ToString()));
 
-                Console.WriteLine("Coaches Selected Players");
-                selectedPlayers.ForEach(x => Console.WriteLine(x.ToString()));
+                Console.WriteLine("Coaches Selected Players"); 
+                selectedPlayers.ForEach(x => Console.WriteLine(x.ToString())); //outputs list of selected players
 
-                Console.WriteLine(salaryTotal);
+                Console.WriteLine("Salary Totel: "+ salaryTotal); //displays salary total
 
                 Console.WriteLine("Press any key to pick again or 'X' to exit the program");
-                sentinelValue = Console.ReadLine().ToUpper();
+                sentinelValue = Console.ReadLine().ToUpper(); //waits to get input to see if it's the sentinel value
 
             } //end of while loop
 
-            for (int i = 0; i < selectedPlayers.Count; i++) //iterates through the selected player list
+            Console.Clear(); //clears console
+
+            if (salaryTotal > 95000000)
+            {
+                Console.WriteLine("Salary was exceeded");
+            }
+            else if (playerCount > 5)
+            {
+                Console.WriteLine("Player count was exceeded");
+            }
+            string moveOn;
+            moveOn = Console.ReadLine();
+
+            for (int i = 0; i < selectedPlayers.Count; i++) //iterates through the selected player list to determine the size of rank bank
             {
                 if (selectedPlayers[i].Best == "The Best" || selectedPlayers[i].Best == "2nd Best" || selectedPlayers[i].Best == "3rd Best")
                 {
@@ -147,11 +160,11 @@ namespace project1
 
             if (rankBank >= 3 || salaryAccum < 65000000)
             {
-                Console.WriteLine("Cost Effective");
+                Console.WriteLine("The picks were cost effective");
             }
 
-            Console.WriteLine("Coaches Selected Players");
-            selectedPlayers.ForEach(x => Console.WriteLine(x.ToString()));
+            //Console.WriteLine("Coaches Selected Players");
+            //selectedPlayers.ForEach(x => Console.WriteLine(x.ToString()));
         }
     }
 }
