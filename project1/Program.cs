@@ -146,6 +146,8 @@ namespace project1
             {
                 Console.WriteLine("Player count was exceeded");
             }
+
+            Console.WriteLine("Enter any key to move on");
             string moveOn;
             moveOn = Console.ReadLine();
 
