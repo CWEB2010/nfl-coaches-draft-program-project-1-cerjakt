@@ -20,6 +20,7 @@ namespace project1
             double salaryTotal = 0;
             int rankBank = 0;
             double salaryAccum = 0;
+            double budget = 95000000;
 
             string[,] name = { //populating data in the player object
                                         {"Joe Burrow", "Tua Tagovailoa", "Justin Herbert", "Jordan Love", "Jake Fromm"},
@@ -116,6 +117,7 @@ namespace project1
                         selectedPlayers.Add(playerList[i]); //adds to selected players list from position in player list
                         Console.WriteLine(playerList[i].Name);
                         salaryTotal = salaryTotal + playerList[i].Salary;
+                        budget = budget - playerList[i].Salary;
                         playerList.RemoveAt(i);
                         playerCount = playerCount + 1;
                     }
@@ -129,7 +131,9 @@ namespace project1
                 Console.WriteLine("Coaches Selected Players"); 
                 selectedPlayers.ForEach(x => Console.WriteLine(x.ToString())); //outputs list of selected players
 
-                Console.WriteLine("Salary Totel: "+ salaryTotal); //displays salary total
+                Console.WriteLine("Salary Total: "+ salaryTotal); //displays salary total
+
+                Console.WriteLine("Budget: "+ budget); //displays budget remaining
 
                 Console.WriteLine("Press any key to pick again or 'X' to exit the program");
                 sentinelValue = Console.ReadLine().ToUpper(); //waits to get input to see if it's the sentinel value
@@ -160,7 +164,7 @@ namespace project1
                 }
             }
 
-            if (rankBank >= 3 || salaryAccum < 65000000)
+            if (rankBank >= 3 && salaryAccum < 65000000)
             {
                 Console.WriteLine("The picks were cost effective");
             }
