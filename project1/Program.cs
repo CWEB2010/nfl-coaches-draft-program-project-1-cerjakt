@@ -179,7 +179,7 @@ namespace project1
                         Console.WriteLine("The picks were cost effective");
                     }
 
-                    Console.WriteLine("Enter in 0 to restart the draft"); //looks for an input so that you can exit the program
+                    Console.WriteLine("Enter in 0 to stop the program, otherwise enter any other number to restart"); //looks for an input so that you can exit the program
                     draftPrimer = Convert.ToInt32(Console.ReadLine()); //Your draft primer is going to be asked again until they enter 0                                                                 
             } //End of my outter while loop 
         }
