@@ -155,11 +155,13 @@ namespace project1
                 Console.WriteLine("Selection was exited");
             }
 
-            Console.WriteLine("Enter any key to move on");
-            string moveOn;
-            moveOn = Console.ReadLine();
+            //Console.WriteLine("Enter any key to move on");
+            //string moveOn;
+            //moveOn = Console.ReadLine();
 
             for (int i = 0; i < selectedPlayers.Count; i++) //iterates through the selected player list to determine the size of rank bank
+                                                            //adds to the rankbank and accumulated salary if the selected player was a best,
+                                                            //second best, or third best.
             {
                 if (selectedPlayers[i].Best == "The Best" || selectedPlayers[i].Best == "2nd Best" || selectedPlayers[i].Best == "3rd Best")
                 {
@@ -168,7 +170,9 @@ namespace project1
                 }
             }
 
-            if (rankBank >= 3 && salaryAccum < 65000000)
+            if (rankBank >= 3 && salaryAccum < 65000000) //if the rank bank is equal to 3 or greater than 3 and the
+                                                         //accumulated salary is less than 65 mil, output that it
+                                                         //was cost effective
             {
                 Console.WriteLine("The picks were cost effective");
             }
