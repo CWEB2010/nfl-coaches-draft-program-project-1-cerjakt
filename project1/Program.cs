@@ -151,9 +151,9 @@ namespace project1
                     {
                         Console.WriteLine("Salary was exceeded");
                     }
-                    else if (playerCount >= 5) //notifies you if the while loop broke for this reason
+                    else if (playerCount == 5) //notifies you if the while loop broke for this reason
                     {
-                        Console.WriteLine("Player count was exceeded");
+                        Console.WriteLine("Player count has reached 5");
                     }
                     else if (sentinelValue == "X") //notifies you that the while loop broke because you entered in "X".
                     {
