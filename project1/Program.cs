@@ -51,9 +51,9 @@ namespace project1
                                         {"Wide-Receiver", "Wide-Receiver", "Wide-Receiver", "Wide-Receiver", "Wide-Receiver"},
                                         {"Defensive Lineman", "Defensive Lineman", "Defensive Lineman", "Defensive Lineman", "Defensive Lineman"},
                                         {"Defensive-Back", "Defensive-Back", "Defensive-Back", "Defensive-Back", "Defensive-Back"},
-                                        {"Tight Ends", "Tight Ends", "Tight Ends", "Tight Ends", "Tight Ends"},
-                                        {"Line-Backer's", "Line-Backer's", "Line-Backer's", "Line-Backer's", "Line-Backer's"},
-                                        {"Offensive Tackles", "Offensive Tackles", "Offensive Tackles", "Offensive Tackles", "Offensive Tackles"}
+                                        {"Tight Ends", "Tight End", "Tight End", "Tight End", "Tight End"},
+                                        {"Line-Backer", "Line-Backer", "Line-Backer", "Line-Backer", "Line-Backer"},
+                                        {"Offensive Tackle", "Offensive Tackle", "Offensive Tackle", "Offensive Tackle", "Offensive Tackle"}
                                  };
 
             double[,] salary = { //populating data in the player object
@@ -124,12 +124,12 @@ namespace project1
 
                 Console.Clear(); //clears the console
 
-                Console.WriteLine("Coaches Selected Players"); 
+                Console.WriteLine("Coaches Selected Players");
                 selectedPlayers.ForEach(x => Console.WriteLine(x.ToString())); //outputs list of selected players
 
-                Console.WriteLine("Salary Total: "+ salaryTotal.ToString("c")); //displays salary total
+                Console.WriteLine("Salary Total: " + salaryTotal.ToString("c")); //displays salary total
 
-                Console.WriteLine("Budget: "+ budget.ToString("c")); //displays budget remaining
+                Console.WriteLine("Budget: " + budget.ToString("c")); //displays budget remaining
 
                 Console.WriteLine("Press any key to pick again or 'X' to exit the player selection");
                 sentinelValue = Console.ReadLine().ToUpper(); //waits to get input to see if it's the sentinel value
@@ -142,7 +142,7 @@ namespace project1
             {
                 Console.WriteLine("Salary was exceeded");
             }
-            else if (playerCount > 5) //notifies you if the while loop broke for this reason
+            else if (playerCount >= 5) //notifies you if the while loop broke for this reason
             {
                 Console.WriteLine("Player count was exceeded");
             }
@@ -150,6 +150,7 @@ namespace project1
             {
                 Console.WriteLine("Selection was exited");
             }
+
 
             for (int i = 0; i < selectedPlayers.Count; i++) //iterates through the selected player list to determine the size of rank bank
                                                             //adds to the rankbank and accumulated salary if the selected player was a best,
@@ -168,6 +169,11 @@ namespace project1
             {
                 Console.WriteLine("The picks were cost effective");
             }
+
+            Console.WriteLine("Enter any key to end the program"); //looks for an input so that you can exit the program
+            string endProgram;
+            endProgram = Console.ReadLine();
+            
         }
     }
 }
@@ -193,7 +199,7 @@ class Player //Making a player class for the players
 	}
     public override string ToString()
     {
-        return String.Format($"ID: {id}  Name: {Name} Institution: {Institution} Position: {Position} Salary: {Salary.ToString("c")}" +
-            $" Availability: {Availability}  Best: {Best} \n");
+        return String.Format($"ID: {id},  Name: {Name}, Institution: {Institution}, Position: {Position}, Salary: {Salary.ToString("c")}," +
+            $" Availability: {Availability},  Best: {Best} \n");
     }
 }
