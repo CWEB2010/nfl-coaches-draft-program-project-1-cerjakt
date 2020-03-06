@@ -131,24 +131,28 @@ namespace project1
                 Console.WriteLine("Coaches Selected Players"); 
                 selectedPlayers.ForEach(x => Console.WriteLine(x.ToString())); //outputs list of selected players
 
-                Console.WriteLine("Salary Total: "+ salaryTotal); //displays salary total
+                Console.WriteLine("Salary Total: "+ salaryTotal.ToString("c")); //displays salary total
 
-                Console.WriteLine("Budget: "+ budget); //displays budget remaining
+                Console.WriteLine("Budget: "+ budget.ToString("c")); //displays budget remaining
 
-                Console.WriteLine("Press any key to pick again or 'X' to exit the program");
+                Console.WriteLine("Press any key to pick again or 'X' to exit the player selection");
                 sentinelValue = Console.ReadLine().ToUpper(); //waits to get input to see if it's the sentinel value
 
             } //end of while loop
 
             Console.Clear(); //clears console
 
-            if (salaryTotal > 95000000)
+            if (salaryTotal > 95000000) //notifies you if the while loop broke for this reason
             {
                 Console.WriteLine("Salary was exceeded");
             }
-            else if (playerCount > 5)
+            else if (playerCount > 5) //notifies you if the while loop broke for this reason
             {
                 Console.WriteLine("Player count was exceeded");
+            }
+            else if (sentinelValue == "X")
+            {
+                Console.WriteLine("Selection was exited");
             }
 
             Console.WriteLine("Enter any key to move on");
