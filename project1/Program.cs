@@ -115,18 +115,14 @@ namespace project1
                     if (selection == playerList[i].id) //if the selection was an available ID, output whats's below
                     {
                         selectedPlayers.Add(playerList[i]); //adds to selected players list from position in player list
-                        Console.WriteLine(playerList[i].Name);
-                        salaryTotal = salaryTotal + playerList[i].Salary;
-                        budget = budget - playerList[i].Salary;
-                        playerList.RemoveAt(i);
-                        playerCount = playerCount + 1;
+                        salaryTotal = salaryTotal + playerList[i].Salary; //adjusting the salary total
+                        budget = budget - playerList[i].Salary; //adjusting the budget
+                        playerList.RemoveAt(i); //removes player from the original list so that you can't select him again
+                        playerCount = playerCount + 1; //adds to the player count so that the while loop breaks if you picked more than 5
                     }
                 }
 
-                Console.Clear();
-
-                //Console.WriteLine("Existing players to select from");
-                //playerList.ForEach(x => Console.WriteLine(x.ToString()));
+                Console.Clear(); //clears the console
 
                 Console.WriteLine("Coaches Selected Players"); 
                 selectedPlayers.ForEach(x => Console.WriteLine(x.ToString())); //outputs list of selected players
@@ -150,14 +146,10 @@ namespace project1
             {
                 Console.WriteLine("Player count was exceeded");
             }
-            else if (sentinelValue == "X")
+            else if (sentinelValue == "X") //notifies you that the while loop broke because you entered in "X".
             {
                 Console.WriteLine("Selection was exited");
             }
-
-            //Console.WriteLine("Enter any key to move on");
-            //string moveOn;
-            //moveOn = Console.ReadLine();
 
             for (int i = 0; i < selectedPlayers.Count; i++) //iterates through the selected player list to determine the size of rank bank
                                                             //adds to the rankbank and accumulated salary if the selected player was a best,
@@ -176,9 +168,6 @@ namespace project1
             {
                 Console.WriteLine("The picks were cost effective");
             }
-
-            //Console.WriteLine("Coaches Selected Players");
-            //selectedPlayers.ForEach(x => Console.WriteLine(x.ToString()));
         }
     }
 }
